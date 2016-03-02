@@ -1,0 +1,4 @@
+ct_jobeet:
+    resource: "@CtJobeetBundle/Resources/config/routing.yml"
+    prefix:   /
+

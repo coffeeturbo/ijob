@@ -1,0 +1,3 @@
+ct_jobeet_homepage:
+    path:     /
+    defaults: { _controller: CtJobeetBundle:Default:index }

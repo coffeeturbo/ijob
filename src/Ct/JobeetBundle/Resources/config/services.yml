@@ -1,0 +1,4 @@
+services:
+#    ct_jobeet.example:
+#        class: Ct\JobeetBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]
