@@ -1,7 +1,7 @@
-ct_jobeet_ct_job:
+CtJobeetBundle_job:
     resource: "@CtJobeetBundle/Resources/config/routing/job.yml"
-    prefix:   /ct_job
+    prefix:   /job
 
-ct_jobeet_homepage:
+CtJobeetBundle_homepage:
     path:     /
     defaults: { _controller: CtJobeetBundle:Job:index }

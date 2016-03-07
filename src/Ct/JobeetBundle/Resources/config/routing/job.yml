@@ -1,12 +1,14 @@
-ct_job_index:
+ct_job:
     path:     /
     defaults: { _controller: "CtJobeetBundle:Job:index" }
     methods:  GET
 
 ct_job_show:
-    path:     /{id}/show
+    path:     /{company}/{location}/{id}/{position}
     defaults: { _controller: "CtJobeetBundle:Job:show" }
     methods:  GET
+    requirements:
+        id:  \d+
 
 ct_job_new:
     path:     /new
