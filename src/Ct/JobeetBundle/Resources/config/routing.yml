@@ -4,4 +4,4 @@ ct_jobeet_ct_job:
 
 ct_jobeet_homepage:
     path:     /
-    defaults: { _controller: CtJobeetBundle:Default:index }
+    defaults: { _controller: CtJobeetBundle:Job:index }

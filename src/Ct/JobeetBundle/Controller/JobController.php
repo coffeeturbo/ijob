@@ -24,7 +24,7 @@ class JobController extends Controller
 
         $jobs = $em->getRepository('CtJobeetBundle:Job')->findAll();
 
-        return $this->render('job/index.html.twig', array(
+        return $this->render('CtJobeetBundle:Job:index.html.twig', array(
             'jobs' => $jobs,
         ));
     }
@@ -85,7 +85,7 @@ class JobController extends Controller
             return $this->redirectToRoute('ct_job_edit', array('id' => $job->getId()));
         }
 
-        return $this->render('job/edit.html.twig', array(
+        return $this->render('CtJobeetBundle:Job:edit.html.twig', array(
             'job' => $job,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

@@ -8,6 +8,6 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('CtJobeetBundle:Default:index.html.twig');
+        return $this->render('CtJobeetBundle::layout.html.twig');
     }
 }

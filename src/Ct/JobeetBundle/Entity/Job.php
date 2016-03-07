@@ -1,7 +1,7 @@
 <?php
 
 namespace Ct\JobeetBundle\Entity;
-
+use Doctrine\ORM\Mapping as ORM;
 /**
  * Job
  */

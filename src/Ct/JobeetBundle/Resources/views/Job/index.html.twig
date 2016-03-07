@@ -1,0 +1,28 @@
+{% extends 'CtJobeetBundle::layout.html.twig' %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ asset('bundles/ctjobeet/css/jobs.css') }}" type="text/css">
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+{% endblock %}
+
+{% block content %}
+	<div id="jobs">
+		<table class="jobs">
+			{% for entity in jobs %}
+				<tr class="{{ cycle(['even', 'odd'], loop.index) }}">
+					<td class="location">{{ entity.location }}</td>
+					<td class="position">
+						<a href="{{ path('ct_job_show', { 'id': entity.id }) }}">
+							{{ entity.position }}
+						</a>
+					</td>
+					<td class="company">{{ entity.company }}</td>
+				</tr>
+			{% endfor %}
+		</table>
+	</div>
+{% endblock %}
