@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Ct\JobeetBundle\Entity\Job;
+use Ct\JobeetBundle\Entity\Category;
 use Ct\JobeetBundle\Form\JobType;
 
 /**
@@ -20,12 +21,28 @@ class JobController extends Controller
      */
     public function indexAction()
     {
+        $max_jobs = $this->container->getParameter('max_jobs_on_homepage');
         $em = $this->getDoctrine()->getManager();
 
-        $jobs = $em->getRepository('CtJobeetBundle:Job')->findAll();
+        $categories = $em->getRepository('CtJobeetBundle:Category')
+          ->getWithJobs();
+
+        foreach($categories as $category){
+
+            if($category instanceof Category){
+
+                $jobs = $em->getRepository('CtJobeetBundle:Job')
+                           ->getActiveJobs(
+                                 $category->getId(),
+                                 $max_jobs
+                );
+
+                $category->setActiveJobs($jobs);
+            }
+        }
 
         return $this->render('CtJobeetBundle:Job:index.html.twig', array(
-            'jobs' => $jobs,
+            'categories' => $categories,
         ));
     }
 
@@ -57,8 +74,15 @@ class JobController extends Controller
      * Finds and displays a Job entity.
      *
      */
-    public function showAction(Job $job)
+    public function showAction($id)
     {
+        $r = $this->getDoctrine()->getRepository('CtJobeetBundle:Job');
+        $job = $r->getActiveJob($id);
+
+        if(!$job){
+            throw $this->createNotFoundException('The job does not exist');
+        }
+
         $deleteForm = $this->createDeleteForm($job);
 
         return $this->render('CtJobeetBundle:Job:show.html.twig', array(
@@ -107,7 +131,7 @@ class JobController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('ct_job_index');
+        return $this->redirectToRoute('ct_job');
     }
 
     /**

@@ -1,6 +1,7 @@
 Ct\JobeetBundle\Entity\Category:
   type: entity
   table: category
+  repositoryClass: Ct\JobeetBundle\Repository\CategoryRepository
   id:
     id:
       type: integer

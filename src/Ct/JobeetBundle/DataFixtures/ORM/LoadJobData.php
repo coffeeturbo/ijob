@@ -47,6 +47,88 @@ class LoadJobData extends AbstractFixture implements OrderedFixtureInterface
 		$em->persist($job_sensio_labs);
 		$em->persist($job_extreme_sensio);
 
+
+		// category programming
+		for($i = 100; $i <= 130; $i++)
+		{
+			$iq = uniqid($i);
+			$job = new Job();
+			$job->setCategory($em->merge($this->getReference('category-programming')));
+			$job->setType('full-time');
+			$job->setCompany('Company '.$iq);
+			$job->setPosition('Web Developer');
+			$job->setLocation('Paris, France');
+			$job->setDescription('Lorem ipsum dolor sit amet, consectetur adipisicing elit.');
+			$job->setHowToApply('Send your resume to lorem.ipsum [at] dolor.sit');
+			$job->setIsPublic(true);
+			$job->setIsActivated(true);
+			$job->setToken('job_'.$iq);
+			$job->setEmail('job@example.com');
+
+			$em->persist($job);
+		}
+
+		//category Design
+		for($i = 100; $i <= 130; $i++)
+		{
+			$iq = uniqid();
+			$job = new Job();
+			$job->setCategory($em->merge($this->getReference('category-design')));
+			$job->setType('full-time');
+			$job->setCompany('Company '.$iq);
+			$job->setPosition('Web Developer');
+			$job->setLocation('Paris, France');
+			$job->setDescription('Lorem ipsum dolor sit amet, consectetur adipisicing elit.');
+			$job->setHowToApply('Send your resume to lorem.ipsum [at] dolor.sit');
+			$job->setIsPublic(true);
+			$job->setIsActivated(true);
+			$job->setToken('job_'.$iq);
+			$job->setEmail('job@example.com');
+
+			$em->persist($job);
+		}
+		//category manager
+		for($i = 100; $i <= 130; $i++)
+		{
+			$iq = uniqid();
+			$job = new Job();
+			$job->setCategory($em->merge($this->getReference('category-manager')));
+			$job->setType('full-time');
+			$job->setCompany('Company '.$iq);
+			$job->setPosition('Web Developer');
+			$job->setLocation('Paris, France');
+			$job->setDescription('Lorem ipsum dolor sit amet, consectetur adipisicing elit.');
+			$job->setHowToApply('Send your resume to lorem.ipsum [at] dolor.sit');
+			$job->setIsPublic(true);
+			$job->setIsActivated(true);
+			$job->setToken('job_'.$iq);
+			$job->setEmail('job@example.com');
+
+			$em->persist($job);
+		}
+		//category administrator
+		for($i = 100; $i <= 130; $i++)
+		{
+			$iq = uniqid();
+			$job = new Job();
+			$job->setCategory($em->merge($this->getReference('category-administrator')));
+			$job->setType('full-time');
+			$job->setCompany('Company '.$iq);
+			$job->setPosition('Web Developer');
+			$job->setLocation('Paris, France');
+			$job->setDescription('Lorem ipsum dolor sit amet, consectetur adipisicing elit.');
+			$job->setHowToApply('Send your resume to lorem.ipsum [at] dolor.sit');
+			$job->setIsPublic(true);
+			$job->setIsActivated(true);
+			$job->setToken('job_'.$iq);
+			$job->setEmail('job@example.com');
+
+			$em->persist($job);
+		}
+
+
+
+
 		$em->flush();
 	}
 

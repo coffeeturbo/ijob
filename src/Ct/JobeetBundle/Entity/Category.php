@@ -27,6 +27,8 @@ class Category
      */
     private $category_affiliates;
 
+    private $active_jobs;
+
     public function __toString(){
         return $this->getName();
     }
@@ -38,6 +40,24 @@ class Category
     {
         $this->jobs = new \Doctrine\Common\Collections\ArrayCollection();
         $this->category_affiliates = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getActiveJobs(){
+        return $this->active_jobs;
+    }
+
+    /**
+     * @param $jobs
+     *
+     * @return $this
+     */
+    public function setActiveJobs($jobs){
+        $this->active_jobs = $jobs;
+
+        return $this;
     }
 
     /**
