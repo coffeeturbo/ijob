@@ -1,6 +1,7 @@
 <?php
 
 namespace Ct\JobeetBundle\Entity;
+use Ct\JobeetBundle\Utils\Jobeet;
 
 /**
  * Category
@@ -160,5 +161,36 @@ class Category
     public function getCategoryAffiliates()
     {
         return $this->category_affiliates;
+    }
+
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+    /**
+     * @var string
+     */
+    private $slug;
+
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return Category
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+    /**
+     * @ORM\PrePersist @ORM\PreUpdate
+     */
+    public function setSlugValue()
+    {
+        $this->slug = Jobeet::slugify($this->getName());
     }
 }
