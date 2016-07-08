@@ -9,30 +9,34 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class CategoryController extends Controller
 {
-    public function showAction(Category $category)
+    public function showAction(Category $category, $page)
     {
-        dump($category);
+        if(is_null($category)) $this->createNotFoundException("Категория не найдена");
 
-        $max_jobs = $this->container->getParameter('max_jobs_on_homepage');
+        $jobsPerPage = 10;
         $em = $this->getDoctrine()->getManager();
 
-        $categories = $em->getRepository('CtJobeetBundle:Category')
-                         ->getWithJobs();
 
-        foreach($categories as $category){
-            if($category instanceof Category){
-                $jobs = $em->getRepository('CtJobeetBundle:Job')
-                           ->getActiveJobs(
-                               $category->getId(),
-                               $max_jobs
-                           );
+        $jobs_total = $em->getRepository('CtJobeetBundle:Job')->countActiveJobs($category->getId());
 
-                $category->setActiveJobs($jobs);
-            }
-        }
+        $last_page = floor($jobs_total / $jobsPerPage);
+        $previous_page = $page > 1 ? $page - 1 : 1;
+        $next_page = $page < $last_page ? $page + 1 : $last_page;
 
-        return $this->render('CtJobeetBundle:Job:index.html.twig', array(
-            'categories' => $categories,
+        $jobs = $em->getRepository('CtJobeetBundle:Job')
+                   ->getActiveJobs(
+                       $category->getId(),
+                       $jobsPerPage
+                   );
+        $category->setActiveJobs($jobs);
+
+        return $this->render('CtJobeetBundle:Category:show.html.twig', array(
+            'category'     => $category,
+            'jobs_total'   => $jobs_total,
+            'last_page'    => $last_page,
+            'previous_page'=> $previous_page,
+            'next_page'    => $next_page,
+            'current_page' => $page
         ));
     }
 }

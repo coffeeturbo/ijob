@@ -7,5 +7,5 @@ CtJobeetBundle_homepage:
     defaults: { _controller: CtJobeetBundle:Job:index }
 
 CtJobeetBundle_category:
-    path:   /category/{slug}
-    defaults: { _controller: CtJobeetBundle:Category:show }
+    path:   /category/{slug}/{page}
+    defaults: { _controller: CtJobeetBundle:Category:show, page: 1}
