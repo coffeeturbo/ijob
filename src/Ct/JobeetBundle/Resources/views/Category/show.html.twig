@@ -1,0 +1,22 @@
+{% extends 'CtJobeetBundle::layout.html.twig' %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ asset('bundles/ctjobeet/css/jobs.css') }}" type="text/css">
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+{% endblock %}
+
+{% block content %}
+	<div class="category">
+		<div class="feed">
+			<a href="">Feed</a>
+		</div>
+		<h1>{{ category.name }}</h1>
+	</div>
+	{{ include('CtJobeetBundle:Job:_jobs.html.twig', {'jobs':category.activejobs}) }}
+
+	{{ include('CtJobeetBundle:Job:_pagination.html.twig') }}
+{% endblock %}

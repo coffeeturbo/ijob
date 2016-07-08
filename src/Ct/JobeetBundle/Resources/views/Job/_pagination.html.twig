@@ -1,0 +1,33 @@
+<div class="pagination">
+	<a href="{{ path('CtJobeetBundle_category', { 'slug': category.slug, 'page': 1 }) }}">
+		<img src="{{ asset('bundles/ctjobeet/images/first.png') }}" alt="First page" title="First page" />
+	</a>
+
+	<a href="{{ path('CtJobeetBundle_category', { 'slug': category.slug, 'page': previous_page }) }}">
+		<img src="{{ asset('bundles/ctjobeet/images/previous.png') }}" alt="Previous page" title="Previous page" />
+	</a>
+
+	{% for page in 1..last_page %}
+		{% if page == current_page %}
+			{{ page }}
+		{% else %}
+			<a href="{{ path('CtJobeetBundle_category', { 'slug': category.slug, 'page': page }) }}">{{ page }}</a>
+		{% endif %}
+	{% endfor %}
+
+	<a href="{{ path('CtJobeetBundle_category', { 'slug': category.slug, 'page': next_page }) }}">
+		<img src="{{ asset('bundles/ctjobeet/images/next.png') }}" alt="Next page" title="Next page" />
+	</a>
+
+	<a href="{{ path('CtJobeetBundle_category', { 'slug': category.slug, 'page': last_page }) }}">
+		<img src="{{ asset('bundles/ctjobeet/images/last.png') }}" alt="Last page" title="Last page" />
+	</a>
+</div>
+
+<div class="pagination_desc">
+	<strong>{{ jobs_total }}</strong> вакансий в категории
+
+	{% if last_page > 1 %}
+		- страница <strong>{{ current_page }}/{{ last_page }}</strong>
+	{% endif %}
+</div>

@@ -49,7 +49,7 @@ class LoadJobData extends AbstractFixture implements OrderedFixtureInterface
 
 
 		// category programming
-		for($i = 100; $i <= 130; $i++)
+		for($i = 0; $i <= 130; $i++)
 		{
 			$iq = uniqid($i);
 			$job = new Job();
@@ -69,7 +69,7 @@ class LoadJobData extends AbstractFixture implements OrderedFixtureInterface
 		}
 
 		//category Design
-		for($i = 100; $i <= 130; $i++)
+		for($i = 0; $i <= 130; $i++)
 		{
 			$iq = uniqid();
 			$job = new Job();
@@ -88,7 +88,7 @@ class LoadJobData extends AbstractFixture implements OrderedFixtureInterface
 			$em->persist($job);
 		}
 		//category manager
-		for($i = 100; $i <= 130; $i++)
+		for($i = 0; $i <= 130; $i++)
 		{
 			$iq = uniqid();
 			$job = new Job();
@@ -107,7 +107,7 @@ class LoadJobData extends AbstractFixture implements OrderedFixtureInterface
 			$em->persist($job);
 		}
 		//category administrator
-		for($i = 100; $i <= 130; $i++)
+		for($i = 0; $i <= 130; $i++)
 		{
 			$iq = uniqid();
 			$job = new Job();
@@ -125,10 +125,6 @@ class LoadJobData extends AbstractFixture implements OrderedFixtureInterface
 
 			$em->persist($job);
 		}
-
-
-
-
 		$em->flush();
 	}
 
